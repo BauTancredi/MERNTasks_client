@@ -70,6 +70,10 @@ a {
   background-color: var(--gris2);
   color: var(--blanco);
 }
+.btn-eliminar {
+  background-color: var(--blanco);
+  color: var(--gris2);
+}
 .btn-primario:hover {
   background: var(--gris3);
 }
