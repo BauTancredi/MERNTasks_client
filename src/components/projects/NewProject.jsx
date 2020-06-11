@@ -4,7 +4,13 @@ import projectContext from "../../context/projects/projectContext";
 const NewProject = () => {
   // Obtain state of form
   const projectsContext = useContext(projectContext);
-  const { form, showForm } = projectsContext;
+  const {
+    form,
+    showForm,
+    addNewProject,
+    errorform,
+    showError,
+  } = projectsContext;
 
   const [project, setProject] = useState({
     name: "",
@@ -23,10 +29,18 @@ const NewProject = () => {
     e.preventDefault();
 
     //Validate Project
+    if (name === "") {
+      showError();
+      return;
+    }
 
     // Add to state
+    addNewProject(project);
 
     // Reset form
+    setProject({
+      name: "",
+    });
   };
 
   return (
@@ -56,6 +70,10 @@ const NewProject = () => {
             className="btn btn-primario btn-block"
           />
         </form>
+      ) : null}
+
+      {errorform ? (
+        <p className="mensaje error">The name is mandatory</p>
       ) : null}
     </Fragment>
   );

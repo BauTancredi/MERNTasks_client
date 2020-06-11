@@ -1,2 +1,6 @@
 export const FORM_PROJECT = "FORM_PROJECT";
 export const OBTAIN_PROJECTS = "OBTAIN_PROJECTS";
+export const ADD_PROJECT = "ADD_PROJECT";
+export const VALIDATE_FROM = "VALIDATE_FROM";
+export const ACTUAL_PROJECT = "ACTUAL_PROJECT";
+export const DELETE_PROJECT = "DELETE_PROJECT";
