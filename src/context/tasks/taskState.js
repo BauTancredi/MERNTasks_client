@@ -1,7 +1,7 @@
 import React, { useReducer } from "react";
 import taskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
-import { TASKS_PROJECT, ADD_TASK } from "../../types";
+import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK } from "../../types";
 
 const TaskState = (props) => {
   const initialState = {
@@ -11,6 +11,7 @@ const TaskState = (props) => {
       { name: "Choose hosting", status: false, projectId: 3 },
     ],
     tasksProject: null,
+    errorTask: false,
   };
 
   const [state, dispatch] = useReducer(TaskReducer, initialState);
@@ -32,13 +33,22 @@ const TaskState = (props) => {
     });
   };
 
+  // Validate error
+  const validateTask = (e) => {
+    dispatch({
+      type: VALIDATE_TASK,
+    });
+  };
+
   return (
     <taskContext.Provider
       value={{
         tasks: state.tasks,
         tasksProject: state.tasksProject,
+        errorTask: state.errorTask,
         obtainTasks,
         addTask,
+        validateTask,
       }}
     >
       {props.children}

@@ -1,4 +1,4 @@
-import { TASKS_PROJECT, ADD_TASK } from "../../types";
+import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK } from "../../types";
 
 export default (state, action) => {
   switch (action.type) {
@@ -13,6 +13,12 @@ export default (state, action) => {
       return {
         ...state,
         tasks: [...state.tasks, action.payload],
+        errorTask: false,
+      };
+    case VALIDATE_TASK:
+      return {
+        ...state,
+        errorTask: true,
       };
     default:
       return state;

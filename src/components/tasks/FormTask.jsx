@@ -10,7 +10,7 @@ const FormTask = () => {
   const { project } = projectsContext;
 
   const tasksContext = useContext(taskContext);
-  const { addTask } = tasksContext;
+  const { addTask, validateTask, errorTask, obtainTasks } = tasksContext;
 
   // Form state
   const [task, setTask] = useState({
@@ -34,13 +34,23 @@ const FormTask = () => {
     e.preventDefault();
 
     // Validate
+    if (name.trim() === "") {
+      validateTask();
+      return;
+    }
 
     // Add task to state
     task.projectId = actualProject.id;
     task.state = false;
     addTask(task);
 
+    // Obtian new tasks
+    obtainTasks(actualProject.id);
+
     // Reset form
+    setTask({
+      name: "",
+    });
   };
 
   return (
@@ -64,6 +74,9 @@ const FormTask = () => {
           />
         </div>
       </form>
+      {errorTask ? (
+        <p className="mensaje error">Task name is mandatory</p>
+      ) : null}
     </div>
   );
 };
