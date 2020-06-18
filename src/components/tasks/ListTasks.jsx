@@ -23,7 +23,7 @@ const ListTasks = () => {
       <h2>Project: {actualProject.name}</h2>
       <ul className="listado-tareas">
         {tasksProject.length === 0 ? (
-          <li className="tarea">No tasksProject available</li>
+          <li className="tarea">No tasks available</li>
         ) : (
           tasksProject.map((task) => <Task task={task} />)
         )}
