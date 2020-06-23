@@ -1,14 +1,15 @@
 import React, { useReducer } from "react";
 import taskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
-import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK } from "../../types";
+import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK, DELETE_TASK } from "../../types";
 
 const TaskState = (props) => {
   const initialState = {
     tasks: [
-      { name: "Choose platform", status: true, projectId: 1 },
-      { name: "Choose colors", status: true, projectId: 2 },
-      { name: "Choose hosting", status: false, projectId: 3 },
+      { id: 1, name: "Choose platform", status: true, projectId: 1 },
+      { id: 4, name: "Choose platform", status: true, projectId: 1 },
+      { id: 2, name: "Choose colors", status: true, projectId: 2 },
+      { id: 3, name: "Choose hosting", status: false, projectId: 3 },
     ],
     tasksProject: null,
     errorTask: false,
@@ -40,6 +41,14 @@ const TaskState = (props) => {
     });
   };
 
+  // Delete task
+  const deleteTask = id => { 
+    dispatch({
+      type: DELETE_TASK,
+      payload: id
+    })
+  }
+
   return (
     <taskContext.Provider
       value={{
@@ -49,6 +58,7 @@ const TaskState = (props) => {
         obtainTasks,
         addTask,
         validateTask,
+        deleteTask
       }}
     >
       {props.children}
