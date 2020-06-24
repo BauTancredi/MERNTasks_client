@@ -1,7 +1,16 @@
 import React, { useReducer } from "react";
 import taskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
-import { TASKS_PROJECT, ADD_TASK, VALIDATE_TASK, DELETE_TASK, STATE_TASK } from "../../types";
+import {
+  TASKS_PROJECT,
+  ADD_TASK,
+  VALIDATE_TASK,
+  DELETE_TASK,
+  STATE_TASK,
+  ACTUAL_TASK,
+  UPDATE_TASK,
+  CLEAN_TASK,
+} from "../../types";
 
 const TaskState = (props) => {
   const initialState = {
@@ -13,6 +22,7 @@ const TaskState = (props) => {
     ],
     tasksProject: null,
     errorTask: false,
+    selectedTask: null,
   };
 
   const [state, dispatch] = useReducer(TaskReducer, initialState);
@@ -42,20 +52,43 @@ const TaskState = (props) => {
   };
 
   // Delete task
-  const deleteTask = id => { 
+  const deleteTask = (id) => {
     dispatch({
       type: DELETE_TASK,
-      payload: id
-    })
-  }
+      payload: id,
+    });
+  };
 
   // Change task state
-  const changeTaskState = task => { 
+  const changeTaskState = (task) => {
     dispatch({
       type: STATE_TASK,
-      payload: task
-    })
-  }
+      payload: task,
+    });
+  };
+
+  // Edit task
+  const saveActualTask = (task) => {
+    dispatch({
+      type: ACTUAL_TASK,
+      payload: task,
+    });
+  };
+
+  const updateTask = (task) => {
+    dispatch({
+      type: UPDATE_TASK,
+      payload: task,
+    });
+  };
+
+  // Delete selected task
+
+  const cleanTask = () => {
+    dispatch({
+      type: CLEAN_TASK,
+    });
+  };
 
   return (
     <taskContext.Provider
@@ -63,11 +96,15 @@ const TaskState = (props) => {
         tasks: state.tasks,
         tasksProject: state.tasksProject,
         errorTask: state.errorTask,
+        selectedTask: state.selectedTask,
         obtainTasks,
         addTask,
         validateTask,
         deleteTask,
-        changeTaskState
+        changeTaskState,
+        saveActualTask,
+        updateTask,
+        cleanTask,
       }}
     >
       {props.children}
