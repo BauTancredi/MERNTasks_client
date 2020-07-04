@@ -30,12 +30,22 @@ const NewAccount = () => {
       email.trim() === "" ||
       password.trim() === "" ||
       confirm.trim() === ""
-    )
+    ) {
       showAlert("All fields are mandatory", "alerta-error");
+      return;
+    }
 
     //Password 6 charecter minimun
+    if (password.length < 6) {
+      showAlert("Password must be at least 6 characters", "alerta-error");
+      return;
+    }
 
     //Two passwods equals
+    if (password !== confirm) {
+      showAlert("Passwords must be equals", "alerta-error");
+      return;
+    }
 
     //Action
   };
