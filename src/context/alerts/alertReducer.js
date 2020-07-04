@@ -4,11 +4,11 @@ export default (state, action) => {
   switch (action.type) {
     case SHOW_ALERT:
       return {
-        action: action.payload,
+        alert: action.payload,
       };
     case HIDE_ALERT:
       return {
-        action: null,
+        alert: null,
       };
     default:
       return state;

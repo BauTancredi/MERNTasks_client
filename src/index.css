@@ -70,10 +70,6 @@ a {
   background-color: var(--gris2);
   color: var(--blanco);
 }
-.btn-eliminar {
-  background-color: var(--blanco);
-  color: var(--gris2);
-}
 .btn-primario:hover {
   background: var(--gris3);
 }
@@ -92,6 +88,9 @@ a {
   padding: 0;
   display: block;
   background-color: transparent;
+}
+.cerrar-sesion {
+  color: var(--blanco);
 }
 
 @media (min-width: 768px) {
@@ -140,6 +139,7 @@ aside {
 .app-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--gris2);
   padding: 4rem;
 }
@@ -324,4 +324,35 @@ aside {
   margin-top: 2rem;
   display: block;
   opacity: 0.7;
+}
+
+.alerta {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  font-family: var(--headingFont);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 2.2rem;
+  text-align: center;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .alerta {
+    width: auto;
+    top: 30px;
+    right: 10px;
+    left: auto;
+  }
+}
+
+.alerta-ok {
+  background-color: rgb(109, 211, 109);
+  color: rgb(2, 103, 2);
+}
+.alerta-error {
+  background-color: rgb(230, 78, 78);
+  color: var(--blanco);
 }
