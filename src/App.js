@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/auth/Login";
 import NewAccount from "./components/auth/NewAccount";
 import Projects from "./components/projects/Projects";
+import PrivateRoute from "./components/routes/PrivateRoute";
 
 import ProjectState from "./context/projects/projectState";
 import TaskState from "./context/tasks/taskState";
@@ -11,7 +12,6 @@ import AlertState from "./context/alerts/alertState";
 import AuthState from "./context/auth/authState";
 
 import authToken from "./config/authToken";
-import authContext from "./context/auth/authContext";
 
 // Validate token
 const token = localStorage.getItem("token");
@@ -28,7 +28,7 @@ function App() {
               <Switch>
                 <Route exact path="/" component={Login} />
                 <Route exact path="/new-account" component={NewAccount} />
-                <Route exact path="/projects" component={Projects} />
+                <PrivateRoute exact path="/projects" component={Projects} />
               </Switch>
             </Router>
           </AuthState>
