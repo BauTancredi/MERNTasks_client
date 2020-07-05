@@ -3,6 +3,7 @@ import React, { useReducer } from "react";
 import authReducer from "./authReducer";
 import authContext from "./authContext";
 import clientAxios from "../../config/axios";
+import authToken from "../../config/authToken";
 
 import {
   REGISTER_SUCCESS,
@@ -50,10 +51,16 @@ const AuthState = (props) => {
   //Return authenticated user
   const authenticatedUser = async () => {
     const token = localStorage.getItem("token");
-    if (token) {
-    }
+
+    if (token) authToken(token);
+
     try {
       const response = await clientAxios.get("/api/auth");
+
+      dispatch({
+        type: OBTAIN_USER,
+        payload: response.data.user,
+      });
     } catch (error) {
       dispatch({
         type: LOGIN_ERROR,
