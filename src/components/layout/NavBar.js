@@ -4,7 +4,7 @@ import AuthContext from "../../context/auth/authContext";
 
 const NavBar = () => {
   const authContext = useContext(AuthContext);
-  const { authenticatedUser, user } = authContext;
+  const { authenticatedUser, user, userLogout } = authContext;
 
   useEffect(() => {
     authenticatedUser();
@@ -19,7 +19,12 @@ const NavBar = () => {
       ) : null}
 
       <nav className="nav-principal">
-        <a href="#!">Log out</a>
+        <button
+          className="btn btn-blank cerrar-sesion"
+          onClick={() => userLogout()}
+        >
+          Log out
+        </button>
       </nav>
     </header>
   );
