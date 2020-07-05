@@ -31,12 +31,17 @@ const AuthState = (props) => {
 
       dispatch({
         type: REGISTER_SUCCESS,
+        payload: response.data,
       });
     } catch (error) {
-      console.log(error);
+      const alert = {
+        msg: error.response.data.msg,
+        category: "alerta-error",
+      };
 
       dispatch({
         type: REGISTER_ERROR,
+        payload: alert,
       });
     }
   };
