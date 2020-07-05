@@ -27,12 +27,13 @@ const AuthState = (props) => {
   const registerUser = async (data) => {
     try {
       const response = await clientAxios.post("/api/users", data);
-      console.log(response);
 
       dispatch({
         type: REGISTER_SUCCESS,
         payload: response.data,
       });
+
+      authenticatedUser();
     } catch (error) {
       const alert = {
         msg: error.response.data.msg,
@@ -42,6 +43,20 @@ const AuthState = (props) => {
       dispatch({
         type: REGISTER_ERROR,
         payload: alert,
+      });
+    }
+  };
+
+  //Return authenticated user
+  const authenticatedUser = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+    }
+    try {
+      const response = await clientAxios.get("/api/auth");
+    } catch (error) {
+      dispatch({
+        type: LOGIN_ERROR,
       });
     }
   };
