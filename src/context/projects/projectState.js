@@ -42,7 +42,14 @@ const ProjectState = (props) => {
         payload: result.data,
       });
     } catch (error) {
-      console.log(error);
+      const alert = {
+        msg: "There has been an error",
+        category: "alerta-error",
+      };
+      dispatch({
+        type: PROJECT_ERROR,
+        payload: alert,
+      });
     }
   };
 
@@ -55,7 +62,14 @@ const ProjectState = (props) => {
         payload: result.data,
       });
     } catch (error) {
-      console.log(error);
+      const alert = {
+        msg: "There has been an error",
+        category: "alerta-error",
+      };
+      dispatch({
+        type: PROJECT_ERROR,
+        payload: alert,
+      });
     }
   };
 
