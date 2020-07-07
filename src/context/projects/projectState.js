@@ -1,5 +1,4 @@
 import React, { useReducer } from "react";
-import { v4 as uuid } from "uuid";
 import projectContext from "./projectContext";
 import projectReducer from "./projectReducer";
 import {
@@ -11,12 +10,9 @@ import {
   DELETE_PROJECT,
 } from "../../types";
 
+import clientAxios from "../../config/axios";
+
 const ProjectState = (props) => {
-  const projects = [
-    { id: 1, name: "Tienda Virtual" },
-    { id: 2, name: "Intranet" },
-    { id: 3, name: "Diseño de sitio web" },
-  ];
   const initialState = {
     form: false,
     projects: [],
@@ -35,21 +31,30 @@ const ProjectState = (props) => {
   };
 
   // Obtain projects
-  const obtainProjects = () => {
-    dispatch({
-      type: OBTAIN_PROJECTS,
-      payload: projects,
-    });
+  const obtainProjects = async () => {
+    try {
+      const result = await clientAxios.get("/api/projects");
+
+      dispatch({
+        type: OBTAIN_PROJECTS,
+        payload: result.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Add new project
-  const addNewProject = (project) => {
-    project.id = uuid();
-
-    dispatch({
-      type: ADD_PROJECT,
-      payload: project,
-    });
+  const addNewProject = async (project) => {
+    try {
+      const result = await clientAxios.post("/api/projects", project);
+      dispatch({
+        type: ADD_PROJECT,
+        payload: result.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Validate form
