@@ -8,6 +8,7 @@ import {
   VALIDATE_FROM,
   ACTUAL_PROJECT,
   DELETE_PROJECT,
+  PROJECT_ERROR,
 } from "../../types";
 
 import clientAxios from "../../config/axios";
@@ -18,6 +19,7 @@ const ProjectState = (props) => {
     projects: [],
     errorform: false,
     project: null,
+    message: null,
   };
 
   // Dispatch for actions
@@ -81,7 +83,14 @@ const ProjectState = (props) => {
         payload: projectId,
       });
     } catch (error) {
-      console.log(error);
+      const alert = {
+        msg: "There has been an error",
+        category: "alerta-error",
+      };
+      dispatch({
+        type: PROJECT_ERROR,
+        payload: alert,
+      });
     }
   };
 
@@ -92,6 +101,7 @@ const ProjectState = (props) => {
         projects: state.projects,
         errorform: state.errorform,
         project: state.project,
+        message: state.message,
         showForm,
         obtainProjects,
         addNewProject,
