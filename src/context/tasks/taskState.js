@@ -26,11 +26,11 @@ const TaskState = (props) => {
   const [state, dispatch] = useReducer(TaskReducer, initialState);
 
   // Obtain project tasks
-
-  const obtainTasks = (projectId) => {
+  const obtainTasks = async (project) => {
+    const result = await clientAxios.get("/api/tasks", { params: { project } });
     dispatch({
       type: TASKS_PROJECT,
-      payload: projectId,
+      payload: result.data.tasks,
     });
   };
 
