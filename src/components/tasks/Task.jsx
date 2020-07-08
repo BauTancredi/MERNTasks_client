@@ -9,10 +9,15 @@ const Task = ({ task }) => {
   const [actualProject] = project;
 
   const tasksContext = useContext(taskContext);
-  const { deleteTask, obtainTasks, changeTaskState, saveActualTask } = tasksContext;
+  const {
+    deleteTask,
+    obtainTasks,
+    changeTaskState,
+    saveActualTask,
+  } = tasksContext;
 
   const handleClick = (id) => {
-    deleteTask(id);
+    deleteTask(id, actualProject._id);
     obtainTasks(actualProject.id);
   };
 
@@ -22,9 +27,9 @@ const Task = ({ task }) => {
     changeTaskState(task);
   };
 
-  const selectTask = task => {
-    saveActualTask(task)
-  }
+  const selectTask = (task) => {
+    saveActualTask(task);
+  };
 
   return (
     <li className="tarea sombra">
@@ -51,13 +56,17 @@ const Task = ({ task }) => {
       </div>
 
       <div className="acciones">
-        <button type="button" className="btn btn-primario" onClick={() => selectTask(task)}>
+        <button
+          type="button"
+          className="btn btn-primario"
+          onClick={() => selectTask(task)}
+        >
           Edit
         </button>
         <button
           type="button"
           className="btn btn-secundario"
-          onClick={() => handleClick(task.id)}
+          onClick={() => handleClick(task._id)}
         >
           Delete
         </button>
