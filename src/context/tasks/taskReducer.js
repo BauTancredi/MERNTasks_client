@@ -35,11 +35,10 @@ export default (state, action) => {
         ),
       };
     case UPDATE_TASK:
-    case STATE_TASK:
       return {
         ...state,
         tasksProject: state.tasksProject.map((task) =>
-          task.id === action.payload.id ? action.payload : task
+          task._id === action.payload._id ? action.payload : task
         ),
       };
     case ACTUAL_TASK:

@@ -9,12 +9,7 @@ const Task = ({ task }) => {
   const [actualProject] = project;
 
   const tasksContext = useContext(taskContext);
-  const {
-    deleteTask,
-    obtainTasks,
-    changeTaskState,
-    saveActualTask,
-  } = tasksContext;
+  const { deleteTask, obtainTasks, updateTask, saveActualTask } = tasksContext;
 
   const handleClick = (id) => {
     deleteTask(id, actualProject._id);
@@ -24,7 +19,7 @@ const Task = ({ task }) => {
   const changeState = (task) => {
     task.status ? (task.status = false) : (task.status = true);
 
-    changeTaskState(task);
+    updateTask(task);
   };
 
   const selectTask = (task) => {
