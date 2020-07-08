@@ -8,6 +8,7 @@ const NavBar = () => {
 
   useEffect(() => {
     authenticatedUser();
+    // eslint-disable-next-line
   }, []);
 
   return (

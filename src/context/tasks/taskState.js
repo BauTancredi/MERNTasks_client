@@ -8,7 +8,6 @@ import {
   ADD_TASK,
   VALIDATE_TASK,
   DELETE_TASK,
-  STATE_TASK,
   ACTUAL_TASK,
   UPDATE_TASK,
   CLEAN_TASK,
@@ -37,7 +36,7 @@ const TaskState = (props) => {
   // Add a new tasks
   const addTask = async (task) => {
     try {
-      const result = await clientAxios.post("/api/tasks", task);
+      await clientAxios.post("/api/tasks", task);
       dispatch({
         type: ADD_TASK,
         payload: task,
